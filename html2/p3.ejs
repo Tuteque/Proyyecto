@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+    <%- include ('./partials/head.ejs') %>
+<body>
+    <div class="moon"></div>
+    <div class="moon__crater moon__crater1"></div>
+    <div class="moon__crater moon__crater2"></div>
+    <div class="moon__crater moon__crater3"></div>
+    
+    <div class="star star1"></div>
+    <div class="star star2"></div>
+    <div class="star star3"></div>
+    <div class="star star4"></div>
+    <div class="star star5"></div>
+    <div class="Pag">
+        <div class="title">Personas</div>
+        <br>
+        <div class="description"> <%- include ('./partials/nav.ejs') %> </div>
+    </div>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <% if (nombre.length >0) { %>
+        <% nombre.forEach(nombres=> { %>
+            <h3 style="font-family: 'Tiny5', sans-serif; font-weight: 400; font-style: normal; color: greenyellow;"><%= nombres.Title %></h3>
+            <h3 class="snippet" style="font-size: 100; color: white;"><%= nombres.snippet %></h3>
+    <% }) %>
+    <% }else{ %>
+        <p>no hay nombres</p>
+        <br>
+    <% } %>
+
+    <% if (apellido.length >0) { %>
+        <% apellido.forEach(apellidos=> { %>
+            <h3 style="font-family: 'Tiny5', sans-serif; font-weight: 400; font-style: normal; color: greenyellow;"><%= apellidos.Title %></h3>
+            <h3 class="snippet" style="font-size: 100; color: white;"><%= apellidos.snippet %></h3>
+    <% }) %>
+    <% }else{ %>
+        <p>no hay apellidos</p>
+    <% } %>
+
+    <%- include ('./partials/footer.ejs') %>
+</body>
+</html>

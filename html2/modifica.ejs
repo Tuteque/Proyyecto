@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+    <%- include ('./partials/head.ejs') %>
+<body>
+    <div class="moon"></div>
+    <div class="moon__crater moon__crater1"></div>
+    <div class="moon__crater moon__crater2"></div>
+    <div class="moon__crater moon__crater3"></div>
+    
+    <div class="star star1"></div>
+    <div class="star star2"></div>
+    <div class="star star3"></div>
+    <div class="star star4"></div>
+    <div class="star star5"></div>
+    <div class="Pag">
+        <div class="title">Editar</div>
+        <br>
+        <div class="description">
+          <center>
+            <a href="http://localhost:3000" style="color: black; background-color: white;">Inicio</a>
+          </center>
+        </div>
+    </div>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <h2 style="font-family: 'Tiny5', sans-serif; font-weight: 400; font-style: normal; color: greenyellow;">crear usuario:</h2>
+    <form action="/editar/<%= user.id %>" method="POST">
+        <h3 class="snippet" style="font-size: 100; color: white;">nombre</h3>
+        <input type="text" id="nombre" required name="nombre" value="<%= user.nombre %>">
+        <h3 class="snippet" style="font-size: 100; color: white;">apellido</h3>
+        <input type="text" id="apellido" required name="apellido" value="<%= user.apellido %>">
+        <h3 class="snippet" style="font-size: 100; color: white;">edad</h3>
+        <input type="number" id="edad" required name="edad" value="<%= user.edad %>">
+        <h3 class="snippet" style="font-size: 100; color: white;">fecha de nacimiento</h3>
+        <input type="date" id="fecha" required name="fecha" value="<%= user.fecha %>">
+        <h3 class="snippet" style="font-size: 100; color: white;">nacionalidad</h3>
+        <input type="text" id="nacionalidad" required name="nacionalidad" value="<%= user.nacionalidad %>">
+        <h3 class="snippet" style="font-size: 100; color: white;">sexo no editable</h3>
+        <h4><%= user.sexo %></h4>
+        <h3 class="snippet" style="font-size: 100; color: white;">email no editable</h3>
+        <h4><%= user.email %></h4>
+        <h3 class="snippet" style="font-size: 100; color: white;">foto no editable</h3>
+        <img src="<%= user.imagePath %>" alt="a" class="image">
+        <br><br>
+        <button style="font-family: 'Tiny5', sans-serif; font-weight: 400; font-style: normal; color: greenyellow; background-color: black;">enviar</button>
+        <!-- Formulario para eliminar el usuario -->
+    </form>
+    <form action="/<%= user.id %>?_method=DELETE" method="POST" style="display:inline;">
+      <button type="submit" class="btn-delete" style="background-color: black;"><img src="/papelera.jpg" width="50"></button>
+    </form>
+    
+    
+    <%- include ('./partials/footer.ejs') %>
+</body>
+</html>

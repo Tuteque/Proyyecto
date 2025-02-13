@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function actualizarCantidad(productoId, increment){
+            const CantidadElemento = document.getElementById(`cantidad-${productoId}`)
+            const entrada = document.getElementById(`entrada-${productoId}`)
+            if(CantidadElemento && entrada){
+                let valor = parseInt(CantidadElemento.textContent)
+                valor = isNaN(valor) ? 1 : valor + increment //incrementamos producto
+                if (valor <1) valor = 1 ; // no permite ser menor a 1
+                CantidadElemento.textContent = valor
+                entrada.value = valor //sincroniza el valor
+
+            }
+        }
+        //sincronizasr el valor antes de enviar el formulario
+        function sincronizarCantidad (productoId){
+            const CantidadElemento= document.getElementById(`cantidad-${productoId}`)
+            const entrada = document.getElementById(`entrada-${productoId}`)
+            if(CantidadElemento && entrada){
+                entrada.value= CantidadElemento.textContent //copia el valor del contador
+        }
+    }
+    </script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        body{
+            padding: 15px;
+        }
+        header{
+            color: white;
+            background-color: black;
+            text-align: center;
+            padding: 10px;
+            border-radius: 8px;
+        }
+        h1{
+            margin: 5px;
+        }
+        main{
+            background-color: brown;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+        }
+        main h2{
+            color: white;
+            font-size: 30px;
+        }
+        section{
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        article{
+            background-color: white;
+            padding: 10px;
+        }
+        footer{
+            background-color: black;
+            color: white;
+            padding: 5px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>La Tienda del Vagabundo</h1>
+        
+        <a href="/cesta" class="`position-relative">
+            <img src="https://t3.ftcdn.net/jpg/05/60/17/66/360_F_560176615_cUua21qgzxDiLiiyiVGYjUnLSGnVLIi6.jpg&quot; alt="cesta">
+            <% if (cestaCantidad && cestaCantidad>0){ %>
+                <span class="cart-badge"> <%= cestaCantidad %> </span>
+           <% } %>
+            </a>
+        </div>
+    </header>
+    <br>
+    <main>
+        <h2>nuestros productos</h2>
+        <br>
+        <section>
+            <% if (productos.length > 0) { %>
+                <% productos.forEach(productos => { %>
+                    <article id="product-<%= productos.id %>">
+                        <img src="<%= productos.imagenUrl %>" alt="<%= productos.nombre %>" width="250" height="250">
+                        <h3><%= productos.nombre %></h3>
+                        <br>
+                        <form action="/add-to-cart" method="POST" onsubmit="sincronizarCantidad('<%= productos._id %>')">
+                            <div class="input-group mb-3" justify-content-center>
+                            <!-- boton para decrementar productos-->
+                             <button type="button" class="btn btn-outline-secondary"
+                                onclick="actualizarCantidad('<%= productos._id %>',-1)">-</button>
+                           
+                            <!-- mostrar cantidad actual-->
+                            <span id="cantidad-<%= productos._id %>" class="mx-3">1</span>
+    
+                            <!-- boton de incrementar productos-->
+                            <button type="button" class="btn btn-outline-secondary"
+                            onclick="actualizarCantidad('<%= productos._id %>',1)">+</button>
+                            </div>
+                        <!-- campo para enviar al servidor -->
+                         <input type ="hidden" name="cantidad" id="entrada-<%= productos._id %>" value="1">
+                       
+                         <button type="submit" class="btn btn-primary w-100" name="productoId" value="<%= productos._id %>">
+                            Agregar a la cesta
+                         </button>
+                        </form>
+
+                    </article>
+                <% }) %>
+            <% } else { %>
+                <h1>NO HAY COÑO</h1>
+            <% } %>
+        </section>
+    </main>
+    <br>
+    <footer>
+        <h4>por juan pacheco</h4>
+    </footer>
+</body>
+</html>

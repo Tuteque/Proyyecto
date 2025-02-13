@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+    <%- include ('./partials/head.ejs') %>
+<body>
+    <div class="moon"></div>
+    <div class="moon__crater moon__crater1"></div>
+    <div class="moon__crater moon__crater2"></div>
+    <div class="moon__crater moon__crater3"></div>
+    
+    <div class="star star1"></div>
+    <div class="star star2"></div>
+    <div class="star star3"></div>
+    <div class="star star4"></div>
+    <div class="star star5"></div>
+    <h1>Pagina Web</h1>
+    <div class="Pag">
+        <div class="title">PAGINA</div>
+        <br>
+        <div class="description"> <%- include ('./partials/nav.ejs') %> </div>
+    </div>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <h2 style="font-family: 'Tiny5', sans-serif; font-weight: 400; font-style: normal; color: greenyellow;">Todos los usuarios</h2>
+    <% if (users.length >0) { %>
+        <% users.forEach(users=> { %>
+            <h3 class="nombre" style="color: white;"><%= users.nombre %></h3>
+            <h4 class="apellido" style="color: white;"><%= users.apellido %></h4>
+            <br>
+            <img src="<%= users.imagePath %>" alt="a" class="image">
+            <br><br>
+            <!--Boton de editar-->
+            <a href="/editar/<%= users.id %>">
+              <button type="button" style="font-family: 'Tiny5', sans-serif; font-weight: 400; font-style: normal; color: greenyellow; background-color: black;">Editar</button>
+            </a>
+            <!--CALLATE ALVARO DIOS-->
+            <!-- Botón de eliminar -->
+             
+            <form action="/<%= users._id %>?_method=DELETE" method="POST" style="display:inline;">
+              <button type="submit" class="btn-delete" style="background-color: black;"><img src="/papelera.jpg" width="50"></button>
+            </form>
+      <% }) %>
+    <% }else{ %>
+        <p style="font-family: 'Tiny5', sans-serif; font-weight: 400; font-style: normal; color: greenyellow;">no hay</p>
+    <% } %>
+    <%- include ('./partials/footer.ejs') %>
+</body>
+</html>
